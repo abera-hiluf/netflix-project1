@@ -53,6 +53,6 @@
     background-image: linear-gradient(
       180deg,
       transparent,
-      rgba(37, 37, 37, 0.3), /* Even lighter opacity */
-      rgba(200, 200, 200, 0.2) /* Light gray to contrast with a dark footer */
-    );
+      rgba(37, 37, 37, 0.3), 
+      rgba(200, 200, 200, 0.2) 
+  )}
