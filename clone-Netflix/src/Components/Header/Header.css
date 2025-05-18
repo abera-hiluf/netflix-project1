@@ -1,36 +1,40 @@
 .header_outer_container {
-    position: sticky;       /* Makes the header stick to the top when scrolling */
-    top: 0;                /* Stick to the top edge of the viewport */
-    justify-content: center;
-align-items: center;
-    /* background-color: transparent;  */
-    /* Makes the background see-through (overrides any previous bg color) */
-    background-color: rgb(20, 20, 20);
-
-    height: 10vh;          /* Sets height to 10% of the viewport height (fixed typo from 'wh' to 'vh') */
-    color: white;          
-    /* Sets text color to white */
-    transition: all 0.5s;  /* Smooth transition for any property changes (e.g., bg color) */
-    transition-timing-function: ease-in; /* Transition starts slow, speeds up */
-    z-index: 1;            /* Ensures the header stays above other elements */
+  position: sticky;
+  /* Makes the header stick to the top when scrolling */
+  top: 0;
+  /* Stick to the top edge of the viewport */
+  justify-content: center;
+  align-items: center;
+  /* background-color: transparent;  */
+  /* Makes the background see-through (overrides any previous bg color) */
+  background-color: rgb(20, 20, 20);
+  height: 10vh;
+  /* Sets height to 10% of the viewport height (fixed typo from 'wh' to 'vh') */
+  color: white;
+  /* Sets text color to white */
+  transition: all 0.5s;
+  /* Smooth transition for any property changes (e.g., bg color) */
+  transition-timing-function: ease-in;
+  /* Transition starts slow, speeds up */
+  z-index: 1;
+  /* Ensures the header stays above other elements */
 }
 
 .nav_black {
-    background-color: rgb(20, 20, 20);
+  background-color: rgb(20, 20, 20);
+}
+.header_container {
+  width: 100%;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+
+
 }
 
-.header_container {
-    width: 100%;
-    padding: 20px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    
-  
-
-} 
- .header_left ul {
+.header_left ul {
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -38,32 +42,36 @@ align-items: center;
   padding: 0;
   margin: 0;
   gap: 1.2rem;
-} 
+}
 
 .header_left img {
-  height: 20px;     
-  width: auto;      
-  margin-right: 10px; 
-
+  height: 20px;
+  width: auto;
+  margin-right: 10px;
 }
+
 .header_right ul {
   /* width: 300px; */
   display: flex;
   align-items: center;
-  justify-content: flex-end; 
-   /* Align items to the right */
+  justify-content: flex-end;
+  /* Align items to the right */
   list-style: none;
   padding: 0;
   margin: 0;
-  gap: 1.2rem;            /* Space between items on the right */
+  gap: 1.2rem;
+  /* Space between items on the right */
 }
 
 .header_right li {
   display: flex;
-  align-items: center;    /* Center the text or icon vertically */
+  align-items: center;
+  /* Center the text or icon vertically */
 }
 
 .header_right li a {
-  text-decoration: none;  /* Remove underline from links */
-  color: white;           /* White text color */
+  text-decoration: none;
+  /* Remove underline from links */
+  color: white;
+  /* White text color */
 }

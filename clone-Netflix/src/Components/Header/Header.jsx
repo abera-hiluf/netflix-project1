@@ -1,19 +1,23 @@
-import React from "react";
+
 import "./Header.css";
-import NetflixLogo from "../../assets/images/Netflix_2015_logo.svg";
-import SearchIcon from "@mui/icons-material/Search";
-import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
+
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+// import NetflixLogo from "../../assets/images/Netflix_2015_logo.svg.png";
+import NetflixLogo from "../../assets/images/Netflix_2015_logo.svg";
+import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
+import React from "react";
+import SearchIcon from "@mui/icons-material/Search";
+
+// import NetflixLogo from "../../assets/images/Netflix_2015_logo.svg";
+
 function Header() {
   return (
     <div className="header_outer_container">
       <div className="header_container">
         <div className="header_left">
           <ul>
-            <li>
-              <img src={NetflixLogo} alt="" />
-            </li>
+            <li>{<img src={NetflixLogo} alt="" />}</li>
             <li>Netflix</li>
             <li>Home</li>
             <li>DOMone</li>
@@ -44,5 +48,4 @@ function Header() {
     </div>
   );
 }
-
 export default Header;
