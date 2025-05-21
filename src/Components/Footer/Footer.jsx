@@ -1,9 +1,11 @@
+
+
+
 import React from "react";
 import FacebookOutlinedIcon from "@mui/icons-material/FacebookOutlined";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import "./Footer.css";
-// import CopyrightIcon from "@mui/icons-material/Copyright";
 
 function Footer() {
   return (
@@ -20,7 +22,7 @@ function Footer() {
             <ul>
               <li>Audio Description</li>
               <li>Investor Relations</li>
-              <li>Legal Notice</li>
+              <li>Legal Notices</li>
             </ul>
           </div>
           <div>
@@ -47,10 +49,16 @@ function Footer() {
         </div>
 
         <div className="footer_extra">
+          <select className="language_selector">
+            <option>English</option>
+            <option>አማርኛ (Amharic)</option>
+            <option>Español</option>
+            <option>Français</option>
+          </select>
+
           <button className="service_code_btn">Service Code</button>
-          <p className="copyright">© 1997-2024 Netflix, Inc.
-            
-          </p>
+
+          <p className="copyright">© 1997–2024 Netflix, Inc.</p>
         </div>
       </div>
     </div>

@@ -1,68 +1,58 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "../../utils/axios";
-
 import requests from "../../utils/request";
-import "./Banner.css"
+import "./Banner.css";
 
 function Banner() {
-    const [movie, setMovie] = useState({});
-    useEffect(() => {
-      (async () => {
-        try {
-          const request = await axios.get(requests.fetchNetflixOriginals);
-          console.log(request);
-          setMovie(
-            request.data.results[
-              Math.floor(Math.random() * request.data.results.length)
-            ]
-          );
-        } catch (error) {
-          console.log("error", error);
-        }
-      })();
-    }, []);
-    // useEffect(() => {
-    //   axios
-    //     .get(requests.fetchNetflixOriginals) // Make the GET request
-    //     .then((response) => {
-    //       console.log("API Response:", response.data);
-    //       const randomIndex = Math.floor(
-    //         Math.random() * response.data.results.length
-    //       );
-    //       setMovie(response.data.results[randomIndex]);
-    //     })
-    //     .catch((error) => {
-    //       console.error("API Error:", error.message, error.response?.data);
-    //     });
-    // }, []);
-    const truncate = (str, n) => {
-      return str?.length > n ? str.substr(0, n - 1) + "..." : str;
-    };
+  const [movie, setMovie] = useState({});
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const request = await axios.get(requests.fetchNetflixOriginals);
+        setMovie(
+          request.data.results[
+            Math.floor(Math.random() * request.data.results.length)
+          ]
+        );
+      } catch (error) {
+        console.error("Banner fetch error:", error);
+      }
+    })();
+  }, []);
+
+  const truncate = (str, n) =>
+    str?.length > n ? str.substr(0, n - 1) + "..." : str;
 
   return (
-    
-      <div
+    <header
       className="banner"
       style={{
         backgroundSize: "cover",
         backgroundImage: `url("https://image.tmdb.org/t/p/original${movie?.backdrop_path}")`,
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center center",
       }}
-        >
-    
+    >
       <div className="banner_contents">
         <h1 className="banner_title">
           {movie?.title || movie?.name || movie?.original_name}
         </h1>
+
         <div className="banner_buttons">
-          <button className="banner_button play">Play</button>
-          <button className="banner_button">My List</button>
+          <button className="banner_button play">▶ Play</button>
+          <button className="banner_button">+ My List</button>
         </div>
-        <h1 className="banner_description">{truncate(movie?.overview, 150)}</h1>
+
+        <p className="banner_description">{truncate(movie?.overview, 160)}</p>
+        {movie?.vote_average && (
+          <span className="banner_rating">
+            ⭐ {movie.vote_average.toFixed(1)}
+          </span>
+        )}
       </div>
-      <div className="banner_fadeBottom"/>
-    </div>
+
+      <div className="banner_fadeBottom" />
+    </header>
   );
 }
 
