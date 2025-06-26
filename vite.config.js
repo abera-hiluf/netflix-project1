@@ -2,6 +2,6 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
 export default defineConfig({
-  base: "/Netflix-clone-project/",
+  base: process.env.GITHUB_PAGES === "true" ? "/Netflix-clone-project/" : "/",
   plugins: [react()],
 });
