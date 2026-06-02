@@ -1,12 +1,62 @@
-# React + Vite
+# Netflix Clone
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Production-ready Netflix-inspired streaming UI built with React, Vite, and the TMDB API.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Featured hero banner powered by TMDB
+- Multiple category rows with horizontal scrolling
+- Trailer playback via YouTube
+- Responsive layout for mobile, tablet, and desktop
+- Graceful loading and error states
+- Vercel-ready SPA routing configuration
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React 19
+- Vite 6
+- Axios
+- Material UI icons
+- TMDB API
+- YouTube trailer integration
+
+## Environment Variables
+
+Create a `.env` file in the project root:
+
+```env
+VITE_TMDB_API_KEY=your_tmdb_api_key_here
+```
+
+You can also use `VITE_API_KEY` for backward compatibility.
+
+## Development
+
+```bash
+npm install
+npm run dev
+```
+
+## Build
+
+```bash
+npm run build
+```
+
+The production output is generated in `dist/`.
+
+## Vercel Deployment
+
+1. Push the project to GitHub.
+2. Import the repository into Vercel.
+3. Set `VITE_TMDB_API_KEY` in the Vercel project environment variables.
+4. Deploy with the default Vite build command:
+   - Build command: `npm run build`
+   - Output directory: `dist`
+
+The included `vercel.json` rewrite keeps SPA routes working correctly.
+
+## Notes
+
+- Make sure your TMDB key is valid and has the required API access enabled.
+- If the featured banner or rows fail to load, the app will show user-friendly fallback states instead of breaking.

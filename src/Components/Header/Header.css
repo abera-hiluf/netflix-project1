@@ -1,77 +1,63 @@
 .header_outer_container {
   position: sticky;
-  /* Makes the header stick to the top when scrolling */
   top: 0;
-  /* Stick to the top edge of the viewport */
-  justify-content: center;
-  align-items: center;
-  /* background-color: transparent;  */
-  /* Makes the background see-through (overrides any previous bg color) */
-  background-color: rgb(20, 20, 20);
-  height: 10vh;
-  /* Sets height to 10% of the viewport height (fixed typo from 'wh' to 'vh') */
-  color: white;
-  /* Sets text color to white */
-  transition: all 0.5s;
-  /* Smooth transition for any property changes (e.g., bg color) */
-  transition-timing-function: ease-in;
-  /* Transition starts slow, speeds up */
-  z-index: 1;
-  /* Ensures the header stays above other elements */
+  z-index: 10;
+  background: rgba(12, 12, 16, 0.88);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-.nav_black {
-  background-color: rgb(20, 20, 20);
-}
 .header_container {
-  width: 100%;
-  padding: 20px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-
-
+  gap: 1rem;
+  padding: 1rem 2rem;
 }
 
-.header_left ul {
+.header_left ul,
+.header_right ul {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  gap: 1rem;
   list-style: none;
   padding: 0;
   margin: 0;
-  gap: 1.2rem;
+}
+
+.header_left li,
+.header_right li {
+  color: var(--text);
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+.header_brand {
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .header_left img {
-  height: 20px;
-  width: auto;
-  margin-right: 10px;
+  width: 88px;
+  height: auto;
 }
 
-.header_right ul {
-  /* width: 300px; */
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  /* Align items to the right */
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  gap: 1.2rem;
-  /* Space between items on the right */
+.header_right svg {
+  color: var(--text);
 }
 
-.header_right li {
-  display: flex;
-  align-items: center;
-  /* Center the text or icon vertically */
-}
+@media (max-width: 900px) {
+  .header_container {
+    padding: 0.9rem 1rem;
+  }
 
-.header_right li a {
-  text-decoration: none;
-  /* Remove underline from links */
-  color: white;
-  /* White text color */
+  .header_left ul {
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .header_left li:nth-child(n + 3) {
+    display: none;
+  }
 }

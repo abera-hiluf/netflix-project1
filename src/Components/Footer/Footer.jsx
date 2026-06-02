@@ -1,7 +1,3 @@
-
-
-
-import React from "react";
 import FacebookOutlinedIcon from "@mui/icons-material/FacebookOutlined";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import YouTubeIcon from "@mui/icons-material/YouTube";
@@ -9,7 +5,7 @@ import "./Footer.css";
 
 function Footer() {
   return (
-    <div className="footer_outer_container">
+    <footer className="footer_outer_container">
       <div className="footer_inner_container">
         <div className="footer_icons">
           <FacebookOutlinedIcon />
@@ -49,19 +45,19 @@ function Footer() {
         </div>
 
         <div className="footer_extra">
-          <select className="language_selector">
+          <select className="language_selector" aria-label="Select language">
             <option>English</option>
-            <option>አማርኛ (Amharic)</option>
-            <option>Español</option>
-            <option>Français</option>
+            <option>Amharic</option>
+            <option>Espa&ntilde;ol</option>
+            <option>Fran&ccedil;ais</option>
           </select>
 
           <button className="service_code_btn">Service Code</button>
 
-          <p className="copyright">© 1997–2024 Netflix, Inc.</p>
+          <p className="copyright">© 1997-2026 Netflix, Inc.</p>
         </div>
       </div>
-    </div>
+    </footer>
   );
 }
 

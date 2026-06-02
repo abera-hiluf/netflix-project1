@@ -1,34 +1,66 @@
-.row_poster {
-    width: 100%;
-    object-fit: contain;
-    max-height: 100px;
-    transition: transform 450ms;
-    margin-right: 10px;
+.row {
+  padding: 1.25rem 0 0.5rem 1.25rem;
+  color: var(--text);
+}
+
+.row h2 {
+  margin: 0 0 0.8rem;
+  font-size: 1.1rem;
+}
+
+.row_status {
+  margin: 0 0 0.75rem;
+  color: var(--muted);
+}
+
+.row_statusError {
+  color: #ffbdbd;
 }
 
 .row_posters {
-    display: flex;
-    overflow-y: hidden;
-    overflow-x: scroll;
-    padding: 20px;
+  display: flex;
+  gap: 0.75rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 0.5rem;
+  scrollbar-width: none;
 }
 
 .row_posters::-webkit-scrollbar {
-    display: none;
+  display: none;
+}
+
+.row_poster {
+  width: auto;
+  max-height: 150px;
+  object-fit: contain;
+  border-radius: 0.4rem;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+  cursor: pointer;
 }
 
 .row_poster:hover {
-    transform: scale(1.08);
+  transform: scale(1.06);
 }
 
 .row_posterLarge {
-    max-height: 250px;
+  max-height: 260px;
 }
 
-.row_posterLarge:hover {
-    transform: scale(1.09);
+.row_trailer {
+  margin-top: 1rem;
 }
-.row{
-    margin-left: 20px;
-    color: white;
+
+@media (max-width: 640px) {
+  .row {
+    padding-left: 1rem;
+  }
+
+  .row_poster {
+    max-height: 115px;
+  }
+
+  .row_posterLarge {
+    max-height: 190px;
+  }
 }

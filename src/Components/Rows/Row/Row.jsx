@@ -1,44 +1,68 @@
-import React, { useEffect, useState } from "react";
-import axios from "../../../utils/axios"
-import "./row.css"
+import { useEffect, useState } from "react";
+import axios from "../../../utils/axios";
+import "./row.css";
 import movieTrailer from "movie-trailer";
 import YouTube from "react-youtube";
 
-const Row = ({ title, fetchUrl, isLargeRow }) => {
-  const [movies, setMovie] = useState([]);
-  const [trailerUrl, setTrailerUrl] = useState("");
+const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/original";
 
-  const base_url = "https://image.tmdb.org/t/p/original";
+const Row = ({ title, fetchUrl, isLargeRow }) => {
+  const [movies, setMovies] = useState([]);
+  const [trailerUrl, setTrailerUrl] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
   useEffect(() => {
+    let isMounted = true;
+
     (async () => {
       try {
-        console.log(fetchUrl);
-        const request = await axios.get(
-          (fetchUrl)
-        );
-        console.log(request);
-        setMovie(request.data.results);
-      } catch (error) {
-        console.log("error", error);
+        setLoading(true);
+        setError("");
+        const request = await axios.get(fetchUrl);
+
+        if (isMounted) {
+          setMovies(request.data.results || []);
+        }
+      } catch (err) {
+        if (isMounted) {
+          console.error(`Row fetch error for ${title}:`, err);
+          setError("Unable to load titles right now.");
+          setMovies([]);
+        }
+      } finally {
+        if (isMounted) {
+          setLoading(false);
+        }
       }
     })();
-  }, [fetchUrl]);
+
+    return () => {
+      isMounted = false;
+    };
+  }, [fetchUrl, title]);
 
   const handleClick = (movie) => {
     if (trailerUrl) {
       setTrailerUrl("");
-    } else {
-      movieTrailer(movie?.title || movie?.name || movie?.original_name)
-        .then((url) => {
-          console.log(url);
-          const urlParams = new URLSearchParams(new URL(url).search);
-          console.log(urlParams);
-          console.log(urlParams.get("v"));
-          setTrailerUrl(urlParams.get("v"));
-        })
-        .catch((error) => console.log(error));
+      return;
     }
+
+    const movieName = movie?.title || movie?.name || movie?.original_name;
+
+    movieTrailer(movieName)
+      .then((url) => {
+        if (!url) {
+          setTrailerUrl("");
+          return;
+        }
+        const urlParams = new URLSearchParams(new URL(url).search);
+        setTrailerUrl(urlParams.get("v") || "");
+      })
+      .catch((err) => {
+        console.error("Trailer lookup error:", err);
+        setTrailerUrl("");
+      });
   };
 
   const opts = {
@@ -51,22 +75,29 @@ const Row = ({ title, fetchUrl, isLargeRow }) => {
 
   return (
     <div className="row">
-      <h1>{title}</h1>
+      <h2>{title}</h2>
+      {loading ? <p className="row_status">Loading titles...</p> : null}
+      {error ? <p className="row_status row_statusError">{error}</p> : null}
       <div className="row_posters">
-        {movies?.map((movie, index) => (
-          <img
-            onClick={() => handleClick(movie)}
-            key={index}
-            src={`${base_url}${
-              isLargeRow ? movie.poster_path : movie.backdrop_path
-            }`}
-            alt={movie.name}
-            className={`row_poster ${isLargeRow && "row_posterLarge"}`}
-          />
-        ))}
+        {movies.map((movie) => {
+          const posterPath = isLargeRow ? movie.poster_path : movie.backdrop_path;
+
+          if (!posterPath) return null;
+
+          return (
+            <img
+              onClick={() => handleClick(movie)}
+              key={movie.id}
+              src={`${IMAGE_BASE_URL}${posterPath}`}
+              alt={movie.title || movie.name || movie.original_name || "Title"}
+              className={`row_poster ${isLargeRow ? "row_posterLarge" : ""}`}
+              loading="lazy"
+            />
+          );
+        })}
       </div>
-      <div style={{ padding: "10px" }}>
-        {trailerUrl && <YouTube videoId={trailerUrl} opts={opts} />}
+      <div className="row_trailer">
+        {trailerUrl ? <YouTube videoId={trailerUrl} opts={opts} /> : null}
       </div>
     </div>
   );
